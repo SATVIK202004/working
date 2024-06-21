@@ -2,17 +2,16 @@ import telebot
 import openai
 import time
 
-# Provided API keys
 TELEGRAM_API_KEY = "7352802684:AAHuHWjz0kt02K_3DZcdOp1nTlaAaxikRm0"
 OPENAI_API_KEY = "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"
 
-# Initialize the Telegram bot
+
 bot = telebot.TeleBot(TELEGRAM_API_KEY)
 
-# Set the OpenAI API key
+
 openai.api_key = OPENAI_API_KEY
 
-# Define command handlers
+
 @bot.message_handler(commands=['start'])
 def start(message):
     bot.reply_to(message, "Hello, I am a Telegram bot. Use /help to see what I can do.")
@@ -29,7 +28,7 @@ def info(message):
 def status(message):
     bot.reply_to(message, "I am up and running.")
 
-# Define a message handler to generate responses using OpenAI
+
 @bot.message_handler(func=lambda message: True)
 def chat(message):
     try:
@@ -48,7 +47,7 @@ def chat(message):
         print(f"Error: {e}")  # Print the exception for debugging
         bot.reply_to(message, "I'm having trouble processing your request. Please try again later.")
 
-# Test the OpenAI API key
+
 try:
     response = openai.Completion.create(
         engine="davinci",
@@ -59,7 +58,7 @@ try:
 except Exception as e:
     print(f"Error testing OpenAI API key: {e}")
 
-# Start the bot and keep it running
+                                        
 print("Hey, I am up....")
 while True:
     try:
